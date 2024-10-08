@@ -1,11 +1,21 @@
 from tkinter import *
+from tkinter import filedialog
+import subprocess
+
+def open_file():
+    welcome.withdraw()
+    file_path = filedialog.askopenfilename(filetypes=[('CSV Files', '*.csv')])
+
+    if file_path:
+        # Pass the selected file to the 'Analysis.py' script
+        subprocess.run(['python', 'Analysis.py', file_path])
 
 # Basic Welcome page GUI window stuff
 welcome = Tk()                                      # creating a GUI window
 welcome.geometry("400x550")                         # Setting the resolution
 welcome.title("CSV Analyzer - Welcome")             # Setting the title
 icon = PhotoImage(file="Logo no_background 147_200.png")
-welcome.iconphoto(True, icon)                       # Setting the GUI logo
+welcome.iconphoto(True, icon)                # Setting the GUI logo
 welcome.config(background='#FFFFFF')                # Setting the background color
 
 # Label stuff
@@ -19,12 +29,12 @@ label.pack()
 text = Label(text="A simple application to\n"
                   "display some statistics.",
              bg='#FFFFFF', fg='#000000', font=('Arial', 16), padx=20, pady=20)
+text.pack()                                         # display the text
 
-text.pack()
-
-btn = Button(welcome, text="Open a CSV file", font=("Arial", 12),
+# click to analyze button
+open_btn = Button(welcome, text="Select CSV file", font=("Arial", 12),
              border=2, bg='#FFFFFF', fg='#000000', padx=10, compound='bottom',
-             command='open_file')
-btn.pack()
+             command=open_file)
+open_btn.pack()                                     # display the button
 
 welcome.mainloop()                                  # Display the GUI window
