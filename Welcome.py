@@ -37,4 +37,5 @@ open_btn = Button(welcome, text="Select CSV file", font=("Arial", 12),
              command=open_file)
 open_btn.pack()                                     # display the button
 
-welcome.mainloop()                                  # Display the GUI window
+if __name__ == "__main__":
+    welcome.mainloop()                                  # Display the GUI window
