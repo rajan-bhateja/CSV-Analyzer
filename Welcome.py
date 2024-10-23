@@ -3,7 +3,7 @@ from tkinter import filedialog
 import subprocess
 
 def open_file():
-    welcome.withdraw()
+    welcome.destroy()
     file_path = filedialog.askopenfilename(filetypes=[('CSV Files', '*.csv')])
 
     if file_path:
