@@ -5,12 +5,14 @@ import seaborn as sns
 from tkinter import *
 import Welcome
 import sys
+import Welcome
 
 # Ensure there is a file path passed as an argument
 if len(sys.argv) > 1:
     file_path = sys.argv[1]  # The file path is passed as the first argument
     try:
         df = pd.read_csv(file_path)
+        Welcome.welcome.destroy()
 
         window = Tk()
         window.config(bg='#ffffee')
@@ -22,9 +24,9 @@ if len(sys.argv) > 1:
         location.pack()
         label = Label(frame1, text=file_path, font=('Arial', 14))
         label.pack()
-
+        #fvfvfsvfs
         window.mainloop()
-        #print(df.head())
+        print(df.head())
 
     except Exception as e:
         print(f"Error occurred while processing the file: {e}")
