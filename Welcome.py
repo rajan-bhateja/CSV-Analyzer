@@ -14,6 +14,7 @@ def open_file():
 welcome = Tk()                                      # creating a GUI window
 welcome.geometry("400x550")                         # Setting the resolution
 welcome.title("CSV Analyzer - Welcome")             # Setting the title
+welcome.config(bg='white')
 icon = PhotoImage(file="Logo no_background 147_200.png")
 welcome.iconphoto(True, icon)                # Setting the GUI logo
 welcome.config(background='#FFFFFF')                # Setting the background color
