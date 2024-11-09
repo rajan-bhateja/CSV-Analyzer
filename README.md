@@ -4,7 +4,7 @@ It shows the basic stats and visuals for any CSV file opened.
 
 #### Libraries Used
 * Pandas
-* Nunpy
+* Numpy
 * Matplotlib.pyplot
 * Seaborn
 * Tkinter
