@@ -1,3 +1,10 @@
 # CSV-Analyzer
-CSV Analyzer is a minor/major project for college, utilizing Python's GUI library Tkinter.
-It uses Pandas, Numpy, Matplotlib, and Seaborn to analyze and visualize CSV data.
+CSV Analyzer is a GUI app created using Tkinter.
+It shows the basic stats and visuals for any CSV file opened.
+
+#### Libraries Used
+* Pandas
+* Nunpy
+* Matplotlib.pyplot
+* Seaborn
+* Tkinter
