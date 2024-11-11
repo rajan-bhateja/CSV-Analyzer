@@ -57,36 +57,36 @@ def perform_analysis():
 
 # Individual descriptive analysis functions
 def calculate_mean(column):
-    return df[column].mean()
+    return round(df[column].mean(), 2)
 
 
 def calculate_median(column):
-    return df[column].median()
+    return round(df[column].median(), 2)
 
 
 def calculate_mode(column):
     mode_values = df[column].mode()
-    return mode_values[0] if not mode_values.empty else "No mode"
+    return round(mode_values[0] if not mode_values.empty else "No mode", 2)
 
 
 def calculate_std_dev(column):
-    return df[column].std()
+    return round(df[column].std(), 2)
 
 
 def calculate_variance(column):
-    return df[column].var()
+    return round(df[column].var(), 2)
 
 
 def calculate_min(column):
-    return df[column].min()
+    return round(df[column].min(), 2)
 
 
 def calculate_max(column):
-    return df[column].max()
+    return round(df[column].max(), 2)
 
 
 def calculate_range(column):
-    return df[column].max() - df[column].min()
+    return round(df[column].max() - df[column].min(), 2)
 
 
 # Tkinter window setup
@@ -102,6 +102,11 @@ load_button.pack(pady=10)
 file_label = tk.Label(root, text="No CSV loaded")
 file_label.pack()
 
+# Dropdown for selecting the column
+tk.Label(root, text="Select Column:").pack(pady=5)
+column_dropdown = ttk.Combobox(root, state="readonly")
+column_dropdown.pack()
+
 # Dropdown for selecting the type of analysis
 tk.Label(root, text="Select Analysis:").pack(pady=5)
 analysis_dropdown = ttk.Combobox(root, state="readonly", values=[
@@ -109,10 +114,6 @@ analysis_dropdown = ttk.Combobox(root, state="readonly", values=[
 ])
 analysis_dropdown.pack()
 
-# Dropdown for selecting the column
-tk.Label(root, text="Select Column:").pack(pady=5)
-column_dropdown = ttk.Combobox(root, state="readonly")
-column_dropdown.pack()
 
 # Calculate button
 calculate_button = tk.Button(root, text="Calculate", command=perform_analysis)
