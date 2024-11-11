@@ -62,6 +62,7 @@ def perform_analysis():
 
     result_text.delete(1.0, tk.END)
     result_text.insert(tk.END, f"{selected_analysis} of {selected_column}: {result}\n")
+    result_text.insert(tk.END, f"{stat_descriptions.get(selected_analysis, 'No description available.')}\n")
 
 
 # Individual descriptive analysis functions
@@ -117,6 +118,25 @@ def calculate_missing_values(column):
 def calculate_unique_values(column):
     return df[column].nunique()
 
+
+# Dictionary of descriptions for each statistic
+stat_descriptions = {
+    "Mean": "Average of all values in a column. Useful for central tendency.",
+    "Median": "Middle value of sorted data. Represents center of data.",
+    "Mode": "Most frequently occurring value. Shows common values.",
+    "Standard Deviation": "Measures variability around mean. High value means more spread.",
+    "Variance": "Shows how data is spread around mean. High variance indicates more spread.",
+    "Min": "Smallest value in a column. Useful for lower limit.",
+    "Max": "Largest value in a column. Useful for upper limit.",
+    "Range": "Difference between max and min values. Shows data spread.",
+    "Interquartile Range (IQR)": "Range of middle 50% values. Useful for outliers.",
+    "Skewness": "Measures asymmetry of data. Positive skew means more low-end values.",
+    "Kurtosis": "Indicates likelihood of extreme values. High kurtosis means more outliers.",
+    "Missing Values Count": "Number of missing values in column. Important for data quality.",
+    "Unique Values Count": "Number of unique values. Useful for categorical data.",
+    "Correlation": "Linear relationship between two columns. 1 or -1 means strong relationship.",
+    "Covariance": "Shows how two columns vary together. Positive or negative sign shows direction."
+}
 
 # Tkinter window setup
 root = tk.Tk()
