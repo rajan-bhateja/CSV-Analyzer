@@ -1,7 +1,6 @@
 import pandas as pd
 import tkinter as tk
-from tkinter import filedialog, messagebox
-from tkinter import ttk
+from tkinter import filedialog, messagebox, ttk
 
 
 # Function to open file dialog and load CSV file
@@ -48,6 +47,16 @@ def perform_analysis():
         result = calculate_max(selected_column)
     elif selected_analysis == "Range":
         result = calculate_range(selected_column)
+    elif selected_analysis == "Interquartile Range (IQR)":
+        result = calculate_iqr(selected_column)
+    elif selected_analysis == "Skewness":
+        result = calculate_skewness(selected_column)
+    elif selected_analysis == "Kurtosis":
+        result = calculate_kurtosis(selected_column)
+    elif selected_analysis == "Missing Values Count":
+        result = calculate_missing_values(selected_column)
+    elif selected_analysis == "Unique Values Count":
+        result = calculate_unique_values(selected_column)
     else:
         result = "Invalid selection."
 
@@ -89,38 +98,62 @@ def calculate_range(column):
     return round(df[column].max() - df[column].min(), 2)
 
 
+def calculate_iqr(column):
+    return round(df[column].quantile(0.75) - df[column].quantile(0.25), 2)
+
+
+def calculate_skewness(column):
+    return round(df[column].skew(), 2)
+
+
+def calculate_kurtosis(column):
+    return round(df[column].kurtosis(), 2)
+
+
+def calculate_missing_values(column):
+    return df[column].isnull().sum()
+
+
+def calculate_unique_values(column):
+    return df[column].nunique()
+
+
 # Tkinter window setup
 root = tk.Tk()
 root.title("CSV Analyzer - Descriptive Statistics")
-root.geometry("500x400")
+root.geometry("600x400")
+
+# Set default font to Helvetica
+default_font = ("Helvetica", 12)
 
 # Load CSV Button
-load_button = tk.Button(root, text="Load CSV", command=load_csv)
+load_button = tk.Button(root, text="Load CSV", command=load_csv, font=default_font)
 load_button.pack(pady=10)
 
 # Label to show the loaded file
-file_label = tk.Label(root, text="No CSV loaded")
+file_label = tk.Label(root, text="No CSV loaded", font=default_font)
 file_label.pack()
 
 # Dropdown for selecting the column
-tk.Label(root, text="Select Column:").pack(pady=5)
-column_dropdown = ttk.Combobox(root, state="readonly")
+tk.Label(root, text="Select Column:", font=default_font).pack(pady=5)
+column_dropdown = ttk.Combobox(root, state="readonly", font=default_font)
 column_dropdown.pack()
 
 # Dropdown for selecting the type of analysis
-tk.Label(root, text="Select Analysis:").pack(pady=5)
+tk.Label(root, text="Select Analysis:", font=default_font).pack(pady=5)
 analysis_dropdown = ttk.Combobox(root, state="readonly", values=[
-    "Mean", "Median", "Mode", "Standard Deviation", "Variance", "Min", "Max", "Range"
-])
+    "Mean", "Median", "Mode", "Standard Deviation", "Variance", "Min", "Max",
+    "Range", "Interquartile Range (IQR)", "Skewness", "Kurtosis",
+    "Missing Values Count", "Unique Values Count"
+], font=default_font)
 analysis_dropdown.pack()
 
-
 # Calculate button
-calculate_button = tk.Button(root, text="Calculate", command=perform_analysis)
+calculate_button = tk.Button(root, text="Calculate", command=perform_analysis, font=default_font)
 calculate_button.pack(pady=10)
 
 # Text box to display results
-result_text = tk.Text(root, height=10, width=50)
+result_text = tk.Text(root, height=10, width=50, font=default_font)
 result_text.pack(pady=10)
 
 # Run the Tkinter event loop
