@@ -101,6 +101,11 @@ try:
     for _, row in stats_df.iterrows():
         tree.insert('', 'end', values=list(row))
 
+    # Add horizontal scrollbar
+    h_scrollbar = Scrollbar(tree_frame, orient='horizontal', command=tree.xview)
+    tree.configure(xscrollcommand=h_scrollbar.set)
+    h_scrollbar.pack(side='bottom', fill='x')
+
     tree.pack(fill='both', expand=True)
 
     # Visualization tab with basic plots
